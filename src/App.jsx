@@ -9,6 +9,55 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const audienceOptions = ["Gents", "Ladies", "Family"];
+const eventTitleOptions = ["Majlis e Aza"];
+const addressOptions = [
+  "MWA; 81-89 Clifton Ave, Kemps Creek NSW 2178",
+  "Alamdar Granville; 419 Blaxcell Street, South Granville, NSW 2142",
+  "Imam Hasan Centre Annangrove; 165 Annangrove Rd, Annangrove NSW 2156",
+  "Dargah Abul Fazlil Abbas; 18 Lara Street, Yennora",
+  "Dargah Abul Fazlil Abbas; Guildford Community Centre, North Hall, Guildford",
+  "Imam Reza Welfare Centre; 3 Yamma Street, Sefton, NSW 2162",
+  "IMA; Grevillia, 2 Lane Street, Wentworthwille",
+  "Imam Ali Centre Sydey; 53 Vallance Street, St Marys NSW 2760",
+  "Panjtan Welfare Association; 188 Silver Water Rd, Silver Water",
+  "IHIC; 6 Lang Rd, Earlwood NSW 2206",
+  "Hussainiya Al Nabi Akram; 6 Rosedale Avenue, Greenacre NSW 2190",
+];
+const organiserOptions = [
+  "MWA",
+  "Alamdar Granville",
+  "Imam Hasan Centre Annangrove",
+  "Dargah Abul Fazlil Abbas",
+  "Imam Reza Welfare Centre",
+  "IMA",
+  "Imam Ali Centre Sydey",
+  "Panjtan Welfare Association",
+  "IHIC",
+  "Sajjadia Sydney",
+];
+const speakerOptions = [
+  "Maulana Syed Shoaib Naqvi",
+  "Maulana Syed Ali Raza Rizvi",
+  "Maulana Syed Rehan Zaidi",
+  "Janab Urfi Hashmi",
+  "Abbas Virjee",
+  "Maulana Syed Jawad Abidi",
+  "Sheikh Abrar Mohammadi",
+  "Maulana Idrees ul Hasan",
+  "Maulana Shahid Al Hussaini",
+  "Maulana Kumail Mehdavi",
+  "Maulana Abul Qasim",
+  "Maulana Sibtain Hasni",
+  "Maulana Syed Muhammad Imran Bukhari",
+  "Sayed Ali Mostajab Al-Dawa (English)",
+  "Maulana Syed Iftikhar Abid Naqvi",
+  "Maulana Anwar Ali Najafi",
+  "Maulana Syed Muhammad Ali Naqvi",
+  "Maulana Abu Talib Tabatabai",
+  "Maulana Syed Muhammad Rizvi (English)",
+  "Maulana Bilal Kazmi",
+  "Maulana Dr Abbas Raza Nayyar Jalalpuri",
+];
 
 const emptyEvent = () => ({
   id: crypto.randomUUID(),
@@ -225,6 +274,7 @@ export default function EventMessageMVP() {
                         <Label htmlFor={`title-${event.id}`}>Event title</Label>
                         <Input
                           id={`title-${event.id}`}
+                          list="event-title-suggestions"
                           value={event.title}
                           onChange={(e) => updateEvent(event.id, "title", e.target.value)}
                           placeholder="Quran Khwani & Majlis e Tarheem"
@@ -245,6 +295,7 @@ export default function EventMessageMVP() {
                         <Label htmlFor={`address-${event.id}`}>Address</Label>
                         <Input
                           id={`address-${event.id}`}
+                          list="address-suggestions"
                           value={event.address}
                           onChange={(e) => updateEvent(event.id, "address", e.target.value)}
                           placeholder="81-89 Clifton Avenue, Kemps Creek"
@@ -255,6 +306,7 @@ export default function EventMessageMVP() {
                         <Label htmlFor={`speaker-${event.id}`}>Speaker</Label>
                         <Input
                           id={`speaker-${event.id}`}
+                          list="speaker-suggestions"
                           value={event.speaker}
                           onChange={(e) => updateEvent(event.id, "speaker", e.target.value)}
                           placeholder="Maulana Syed Shoaib Naqvi"
@@ -265,6 +317,7 @@ export default function EventMessageMVP() {
                         <Label htmlFor={`organiser-${event.id}`}>Organiser</Label>
                         <Input
                           id={`organiser-${event.id}`}
+                          list="organiser-suggestions"
                           value={event.organiser}
                           onChange={(e) => updateEvent(event.id, "organiser", e.target.value)}
                           placeholder="MWA"
@@ -329,6 +382,26 @@ export default function EventMessageMVP() {
             </Card>
           </div>
         </div>
+        <datalist id="event-title-suggestions">
+          {eventTitleOptions.map((title) => (
+            <option key={title} value={title} />
+          ))}
+        </datalist>
+        <datalist id="address-suggestions">
+          {addressOptions.map((address) => (
+            <option key={address} value={address} />
+          ))}
+        </datalist>
+        <datalist id="organiser-suggestions">
+          {organiserOptions.map((organiser) => (
+            <option key={organiser} value={organiser} />
+          ))}
+        </datalist>
+        <datalist id="speaker-suggestions">
+          {speakerOptions.map((speaker) => (
+            <option key={speaker} value={speaker} />
+          ))}
+        </datalist>
       </div>
     </div>
   );
